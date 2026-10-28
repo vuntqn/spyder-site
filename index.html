@@ -94,6 +94,23 @@ h3{font-size:1.5rem;line-height:1.2;margin:0;font-weight:800;letter-spacing:-.01
 .contact .label{color:var(--muted);font-size:.95rem;margin-right:.75rem;font-weight:400}
 footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
 
+/* posts */
+.posts{min-width:0}
+.posts-track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;align-items:flex-start;-webkit-overflow-scrolling:touch}
+.posts-track::-webkit-scrollbar{display:none}
+.post{flex:0 0 calc((100% - 1rem)/2);min-width:0;scroll-snap-align:start}
+.post .twitter-tweet,.post iframe{max-width:100%!important;margin:0 auto!important}
+.post-fallback{display:flex;flex-direction:column;gap:.3rem;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem;text-decoration:none;min-height:9rem}
+.post-fallback:hover{border-color:var(--text)}
+.pf-name{font-weight:800}
+.pf-sub{color:var(--muted);font-size:.95rem}
+.pf-cta{margin-top:auto;font-weight:600}
+.post-nav{display:flex;gap:.6rem;margin-top:1rem}
+.post-nav button{font:inherit;font-size:.95rem;color:var(--text);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;cursor:pointer}
+.post-nav button:hover:not(:disabled){border-color:var(--text)}
+.post-nav button:disabled{opacity:.4;cursor:default}
+@media (max-width:640px){.post{flex:0 0 100%}}
+
 @media (max-width:820px){
   body{font-size:1rem}
   .top{flex-direction:column;align-items:flex-start;gap:.4rem;padding:1rem 0 .5rem}
@@ -133,6 +150,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
       <a href="#recognition">Recognition</a>
       <a href="#skills">Skills</a>
       <a href="#credentials">Credentials</a>
+      <a href="#posts">Posts</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -233,6 +251,26 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
       </div>
     </section>
 
+    <section id="posts">
+      <div class="sec">
+        <h3>Featured Posts</h3>
+        <div class="posts">
+          <div class="posts-track" id="posts-track" tabindex="0" aria-label="Featured posts from X">
+            <article class="post" data-id="2105882853716402484"><a class="post-fallback" href="https://x.com/vuntqn91/status/2105882853716402484"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+            <article class="post" data-id="2112362270688952773"><a class="post-fallback" href="https://x.com/vuntqn91/status/2112362270688952773"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+            <article class="post" data-id="2073202541257703707"><a class="post-fallback" href="https://x.com/vuntqn91/status/2073202541257703707"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+            <article class="post" data-id="2100411546572894287"><a class="post-fallback" href="https://x.com/vuntqn91/status/2100411546572894287"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+            <article class="post" data-id="2109243999278260538"><a class="post-fallback" href="https://x.com/vuntqn91/status/2109243999278260538"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+            <article class="post" data-id="2112728178523504828"><a class="post-fallback" href="https://x.com/vuntqn91/status/2112728178523504828"><span class="pf-name">@vuntqn91</span><span class="pf-sub">Post on X</span><span class="pf-cta">Open post ↗</span></a></article>
+          </div>
+          <div class="post-nav">
+            <button type="button" id="posts-prev" aria-label="Previous posts">← Prev</button>
+            <button type="button" id="posts-next" aria-label="Next posts">Next →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact">
       <div class="sec">
         <h3>Contact</h3>
@@ -247,5 +285,31 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
 
   <footer>© 2026 Spyder. Vietnam.</footer>
 </div>
+
+<script>
+(function(){
+  var track=document.getElementById('posts-track'); if(!track) return;
+  var prev=document.getElementById('posts-prev'), next=document.getElementById('posts-next');
+  function step(){var c=track.querySelector('.post'); return c?c.getBoundingClientRect().width+16:track.clientWidth;}
+  function upd(){prev.disabled=track.scrollLeft<=4; next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4;}
+  prev.addEventListener('click',function(){track.scrollBy({left:-step(),behavior:'smooth'});});
+  next.addEventListener('click',function(){track.scrollBy({left:step(),behavior:'smooth'});});
+  track.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
+  function isDark(){var t=document.documentElement.getAttribute('data-theme'); if(t) return t==='dark'; return !!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);}
+  function embed(){
+    if(!window.twttr||!twttr.widgets) return;
+    track.querySelectorAll('.post').forEach(function(p){
+      if(p.dataset.done) return; p.dataset.done='1';
+      var fb=p.querySelector('.post-fallback');
+      twttr.widgets.createTweet(p.dataset.id,p,{theme:isDark()?'dark':'light',dnt:true,conversation:'none',align:'center'})
+        .then(function(el){if(el&&fb){fb.remove();} upd();})
+        .catch(function(){});
+    });
+  }
+  var sc=document.createElement('script'); sc.src='https://platform.twitter.com/widgets.js'; sc.async=true; sc.charset='utf-8';
+  sc.onload=function(){ if(window.twttr&&twttr.ready){twttr.ready(embed);} else {embed();} };
+  document.body.appendChild(sc);
+})();
+</script>
 </body>
 </html>
