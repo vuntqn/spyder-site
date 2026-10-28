@@ -70,12 +70,12 @@ h1{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.12;letter-spacing:-.025em;fo
 .rec p{margin:.45rem 0 0;color:var(--muted);max-width:40em}
 .sub{list-style:none;margin:.75rem 0 0;padding:0}
 .sub li{position:relative;padding:.7rem 0 .7rem 1.4rem}
-.sub li::before{content:"";position:absolute;left:.15rem;top:1.3rem;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.sub li::before{content:"";position:absolute;left:.15rem;top:1.3rem;width:7px;height:7px;border-radius:50%;background:var(--text)}
 .sub b{display:block;font-weight:600}
 .sub span{display:block;color:var(--muted);max-width:40em}
 
 /* sections */
-section{padding:clamp(2.5rem,6vw,4.5rem) 0;border-top:1px solid var(--line)}
+section{padding:clamp(2rem,5vw,3.5rem) 0;border-top:1px solid var(--line)}
 .sec{display:grid;grid-template-columns:200px 1fr;gap:clamp(1.25rem,4vw,3rem)}
 h3{font-size:1.5rem;line-height:1.2;margin:0;font-weight:800;letter-spacing:-.01em}
 .sec p{margin:0 0 1rem;max-width:40em}
@@ -196,10 +196,19 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
     <section id="skills">
       <div class="sec">
         <h3>Skills</h3>
-        <ul class="list">
-          <li><div><b>Wallet and localization testing</b><br><span>QR payment flows, bug reports with reproducible steps, screenshots and video, user-centric feedback.</span></div></li>
-          <li><div><b>Web3 and blockchain</b><br><span>Wallets, DeFi, tokenomics and blockchain ecosystems, with a solid grasp of the terminology.</span></div></li>
-          <li><div><b>Communication and personal branding</b><br><span>Content writing, engagement on X, cross-cultural community participation.</span></div></li>
+        <ul class="rec">
+          <li>
+            <h4>Wallet and localization testing</h4>
+            <p>QR payment flows, bug reports with reproducible steps, screenshots and video, user-centric feedback.</p>
+          </li>
+          <li>
+            <h4>Web3 and blockchain</h4>
+            <p>Wallets, DeFi, tokenomics and blockchain ecosystems, with a solid grasp of the terminology.</p>
+          </li>
+          <li>
+            <h4>Communication and personal branding</h4>
+            <p>Content writing, engagement on X, cross-cultural community participation.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -207,13 +216,20 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
     <section id="credentials">
       <div class="sec">
         <h3>Credentials</h3>
-        <div>
-          <ul class="list">
-            <li><div><b>Blockchain4Youth Learning Hub Program</b><br><span>Issued by Bitget and Blockchain4Youth. Certificate ID B4Y-2026-001039.</span></div></li>
-            <li><div><b>Digital Asset Literacy Certificate, “The Crypto Arena”</b><br><span>Issued by VBI Academy, VIFC Academy and SCEX, September 2026. Certificate ID PCTSS-017192.</span></div></li>
-          </ul>
-          <p style="margin-top:1.5rem"><b>Languages:</b> Vietnamese (native), English (working proficiency).</p>
-        </div>
+        <ul class="rec">
+          <li>
+            <h4>Blockchain4Youth Learning Hub Program</h4>
+            <p>Issued by Bitget and Blockchain4Youth. Certificate ID B4Y-2026-001039.</p>
+          </li>
+          <li>
+            <h4>Digital Asset Literacy Certificate, “The Crypto Arena”</h4>
+            <p>Issued by VBI Academy, VIFC Academy and SCEX, September 2026. Certificate ID PCTSS-017192.</p>
+          </li>
+          <li>
+            <h4>Languages</h4>
+            <p>Vietnamese (native), English (working proficiency).</p>
+          </li>
+        </ul>
       </div>
     </section>
 
